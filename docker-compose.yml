@@ -10,6 +10,8 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-kong}
         volumes:
             - ./pg_data:/var/lib/postgresql/data
+        networks:
+            - backend
         restart: always
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -41,6 +43,8 @@ services:
             - 80:8000
             - 443:8443
             - 127.0.0.1:8001:8001
+        networks:
+            - backend
         healthcheck:
             test: ["CMD", "kong", "health"]
             interval: 5s
@@ -59,6 +63,8 @@ services:
             - NODE_ENV=development
         ports:
             - 10.10.10.2:1337:1337
+        networks:
+            - backend
         volumes:
             - ./konga_data:/app/kongadata
 
