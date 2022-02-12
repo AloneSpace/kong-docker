@@ -62,7 +62,7 @@ services:
             # But the default `sails-disk` adapter is not designed for use as a production database;
             - NODE_ENV=development
         ports:
-            - 10.10.10.2:1337:1337
+            - 127.0.0.1:1337:1337
         networks:
             - backend
         volumes:
