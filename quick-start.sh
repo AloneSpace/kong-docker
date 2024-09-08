@@ -2,7 +2,7 @@
 
 echo "Starting kong-database..."
 
-docker-compose up -d kong-database
+docker compose up -d kong-database
 
 STATUS="starting"
 
@@ -16,15 +16,15 @@ done
 
 echo "Running database migrations..."
 
-docker-compose run --rm kong kong migrations bootstrap --vv
+docker compose run --rm kong kong migrations bootstrap --vv
 
 echo "Starting kong..."
 
-docker-compose up -d kong
+docker compose up -d kong
 
 echo "Kong admin running http://127.0.0.1:8001/"
 echo "Kong proxy running http://127.0.0.1/"
 
 echo "Starting konga..."
-docker-compose up -d konga
+docker compose up -d konga
 echo "Konga running http://127.0.0.1:1337/"
